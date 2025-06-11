@@ -1,6 +1,8 @@
 package in.co.sharnx.adv.ctl;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -67,9 +69,9 @@ public class EmployeeListCtl extends HttpServlet {
 				for (String id : ids) {
 					try {
 						model.delete(Integer.parseInt(id));
-						
+
 					} catch (Exception e) {
- 					}
+					}
 				}
 				req.setAttribute("msg", "Record deleted successfully...!!");
 
@@ -78,9 +80,24 @@ public class EmployeeListCtl extends HttpServlet {
 			}
 
 		}
-		
-		if(op.equals("edit")) {
-			
+
+		if (op.equals("search")) {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			pageNo = 1;
+			bean = new UserBean();
+			bean.setFirstName(req.getParameter("firstName"));
+			try {
+				bean.setDob(sdf.parse(req.getParameter("dob")));
+				
+ 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		if (op.equals("edit")) {
+
 			resp.sendRedirect("LoginView.jsp");
 		}
 

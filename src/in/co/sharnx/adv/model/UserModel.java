@@ -153,12 +153,23 @@ public class UserModel {
 			bean.setDeptName(rs.getString(10));
 		}
 		JDBCDataSource.closeConnection(conn);
- 		return bean;
+		return bean;
 	}
 
 	public static List search(UserBean bean, int pageNo, int pageSize) throws Exception {
 		Connection conn = JDBCDataSource.getConnection();
 		StringBuffer sql = new StringBuffer("select * from employee where 1=1");
+
+		if (bean != null) {
+
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and first_name like '" + bean.getFirstName() + "%'");
+			}
+			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
+				sql.append(" and dob like '" + new java.sql.Date(bean.getDob().getTime()) + "%'");
+			}
+
+		}
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

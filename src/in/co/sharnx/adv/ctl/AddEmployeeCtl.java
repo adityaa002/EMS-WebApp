@@ -23,24 +23,18 @@ public class AddEmployeeCtl extends HttpServlet {
 		System.out.println("data to update " + id);
 		UserModel model = new UserModel();
 
- 
 		if (id != null) {
 
 			try {
 				UserBean bean = model.findByPk(Integer.parseInt(id));
 				req.setAttribute("bean", bean);
 				System.out.println("bean from DB " + bean);
- 
-				
+
 			} catch (Exception e) {
-				
-				
- 				e.printStackTrace();
+
+				e.printStackTrace();
 			}
 
-
-  
-			 
 		}
 
 		RequestDispatcher rd = req.getRequestDispatcher("AddEmployeeView.jsp");
@@ -82,15 +76,18 @@ public class AddEmployeeCtl extends HttpServlet {
 		UserModel model = new UserModel();
 
 		if (op.equals("update")) {
+
 			try {
 				bean.setId(Integer.parseInt(req.getParameter("id")));
 				model.update(bean);
-				bean = model.findByPk(bean.getId());
+				model.findByPk(bean.getId());
 				req.setAttribute("bean", bean);
-				req.setAttribute("msg", "Employee Updated Successfully..!!");
+				req.setAttribute("msg", "Employee updated successfully...!!");
+
 			} catch (Exception e) {
 				req.setAttribute("msg", e.getMessage());
 			}
+
 		}
 
 		if (op.equals("save")) {
@@ -101,8 +98,7 @@ public class AddEmployeeCtl extends HttpServlet {
 				req.setAttribute("msg", e.getMessage());
 			}
 		}
-		System.out.println("data stored");
-		RequestDispatcher rd = req.getRequestDispatcher("AddEmployeeView.jsp");
+ 		RequestDispatcher rd = req.getRequestDispatcher("AddEmployeeView.jsp");
 		rd.forward(req, resp);
 	}
 

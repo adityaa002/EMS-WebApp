@@ -14,9 +14,9 @@ public class TestModel {
 		// testAdd();
 		// testUpdate();
 		// testDelete();
-		testFindByPk();
+		//testFindByPk();
 		// testFindByLogin();
-		// testSearch();
+		 testSearch();
 		// testAuth();
 
 	}
@@ -81,15 +81,24 @@ public class TestModel {
 	}
 
 	public static void testSearch() throws Exception {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
-		List list = UserModel.search(bean, 4, 1);
-
-		Iterator it = list.iterator();
+		//bean.setFirstName("d");
+//		bean.setDob("1998-12-25");
+		UserModel model = new UserModel();
+		List list = model.search(bean, 1, 5);
+ 		Iterator it = list.iterator();
 
 		while (it.hasNext()) {
 			bean = (UserBean) it.next();
 			System.out.print(bean.getId());
-			System.out.println("\t" + bean.getFirstName());
+			System.out.print("\t" + bean.getFirstName());
+			System.out.print("\t" + bean.getLastName());
+			System.out.print("\t" + bean.getLoginId());
+			System.out.print("\t" + bean.getPassword());
+			System.out.print("\t" + bean.getDob());
+			System.out.println("\t" + bean.getAddress());
 		}
 
 	}

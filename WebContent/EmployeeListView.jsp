@@ -16,7 +16,7 @@
 		String msg = (String) request.getAttribute("msg");
 		List nextList = (List) request.getAttribute("nextList");
 		int pageNo = (int) request.getAttribute("pageNo");
-
+		int index = ((pageNo - 1) * 5) + 1;
 		List list = (List) request.getAttribute("list");
 		Iterator it = list.iterator();
 	%>
@@ -41,6 +41,21 @@
 			%>
 		</div>
 
+		<div align="center">
+			<table>
+				<tr>
+					<th>First Name :</th>
+					<td><input type="text" name="firstName"
+						placeholder="enter your first name">&nbsp; &nbsp;</td>
+					<th>Date of Birth :</th>
+					<td><input type="Date" name="dob">&nbsp; &nbsp;</td>
+					<td><input type="submit" name="operation" value="search"></td>
+				</tr>
+			</table>
+		</div>
+
+
+		<br>
 		<div>
 			<table border="1" style="width: 98%">
 
@@ -66,6 +81,7 @@
 				<tr>
 					<th><input type="checkbox" name="ids"
 						value="<%=bean.getId()%>"></th>
+					<td><%=index++%></td>
 					<td><%=bean.getId()%></td>
 					<td><%=bean.getFirstName()%></td>
 					<td><%=bean.getLastName()%></td>

@@ -49,14 +49,7 @@
 			
 			
 			<div align="center">
-		<%
-			if (bean == null) {
-				out.println("<p style='color:red;'>Bean is null</p>");
-			} else {
-				out.println("<p style='color:green;'>Bean ID from JSP: " + bean.getId() + "</p>");
-				out.println("<p style='color:green;'>First Name: " + bean.getFirstName() + "</p>");
-			}
-		%>
+		 
 	</div>
 
 
@@ -105,7 +98,7 @@
 
 				<tr>
 					<th>Password :</th>
-					<th><input type="text" name="password"
+					<th><input type="password" name="password"
 						value="<%=(bean != null && bean.getId() > 0) ? bean.getPassword() : ""%>"></th>
 				</tr>
 
