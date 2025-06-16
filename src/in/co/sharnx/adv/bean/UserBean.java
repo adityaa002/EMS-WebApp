@@ -5,8 +5,8 @@ import java.util.Date;
 public class UserBean {
 
 	
-	private String firstName = null;
 	private int id = 0;
+	private String firstName = null;
 	private String lastName = null;
 	private String loginId = null;
 	private String password = null;
